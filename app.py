@@ -80,6 +80,7 @@ def main():
         st.session_state.conversation = None
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = None
+        # HELLO SHUBHMA AND PARMEESH
 
     st.header("Chat with PDFs :open_file_folder:")
     user_question = st.text_input("Ask a question about your documents:")
