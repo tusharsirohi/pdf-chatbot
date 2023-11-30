@@ -12,7 +12,7 @@ To install the Chat App, please follow these steps:
 -----
 1. Run the `app.py` file using the Streamlit CLI. Execute the following command:
    ```
-      streamlit run app.py
+   streamlit run app.py
 ## License
 -------
 The Chat App is released under the [MIT License](https://opensource.org/licenses/MIT).
