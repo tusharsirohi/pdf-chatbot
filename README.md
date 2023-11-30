@@ -10,9 +10,9 @@ To install the Chat App, please follow these steps:
 
 ## Usage
 -----
-1. Run the `main.py` file using the Streamlit CLI. Execute the following command:
+1. Run the `app.py` file using the Streamlit CLI. Execute the following command:
    ```
       streamlit run app.py
 ## License
 -------
-The MultiPDF Chat App is released under the [MIT License](https://opensource.org/licenses/MIT).
+The Chat App is released under the [MIT License](https://opensource.org/licenses/MIT).
