@@ -37,15 +37,15 @@ def get_text_chunks(text):
 
 
 def get_vectorstore(text_chunks):
-    embeddings = OpenAIEmbeddings()
-    # embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
+    # embeddings = OpenAIEmbeddings()
+    embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     return vectorstore
 
 
 def get_conversation_chain(vectorstore):
-    llm = ChatOpenAI()
-    # llm = HuggingFaceHub(repo_id="google/flan-t5-xxl", model_kwargs={"temperature":0.4, "max_length":512})
+    # llm = ChatOpenAI()
+    llm = HuggingFaceHub(repo_id="google/flan-t5-xxl", model_kwargs={"temperature":0.4, "max_length":512})
 
     memory = ConversationBufferMemory(
         memory_key='chat_history', return_messages=True)
@@ -95,19 +95,19 @@ def main():
             "Upload your PDFs here and click on 'Process'", accept_multiple_files=True)
         if st.button("Process"):
             with st.spinner("Processing"):
-                # get pdf text
+                
                 raw_text = get_pdf_text(pdf_docs)
 
-                # get the text chunks
+                
                 text_chunks = get_text_chunks(raw_text)
 
-                # create vector store
+                
                 vectorstore = get_vectorstore(text_chunks)
 
-                # create conversation chain
+                
                 st.session_state.conversation = get_conversation_chain(
                     vectorstore)
-                #comment new
+                
 
 
 if __name__ == '__main__':
