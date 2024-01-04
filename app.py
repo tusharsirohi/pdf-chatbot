@@ -11,8 +11,7 @@ from htmlTemplates import css, bot_template, user_template
 from langchain.llms import HuggingFaceHub
 import os
 import openai
-
-
+import langchain_google_genai 
 
 
 
@@ -38,14 +37,15 @@ def get_text_chunks(text):
 
 def get_vectorstore(text_chunks):
     # embeddings = OpenAIEmbeddings()
-    embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
+    # embeddings = HuggingFaceInstructEmbeddings(model_name="hkunlp/instructor-xl")
+    embeddings = langchain_google_genai.GoogleGenerativeAIEmbeddings(model="models/embedding-001")
     vectorstore = FAISS.from_texts(texts=text_chunks, embedding=embeddings)
     return vectorstore
 
 
 def get_conversation_chain(vectorstore):
     # llm = ChatOpenAI()
-    llm = HuggingFaceHub(repo_id="google/flan-t5-xxl", model_kwargs={"temperature":0.4, "max_length":512})
+    llm = HuggingFaceHub(repo_id="google/flan-t5-xxl", model_kwargs={"temperature":0.7, "max_length":500})
 
     memory = ConversationBufferMemory(
         memory_key='chat_history', return_messages=True)
